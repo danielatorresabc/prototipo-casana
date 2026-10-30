@@ -1,0 +1,553 @@
+/* RESET GENERAL */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #58A79E; /* Color verde agrisado Breaker Bay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* MARCO MÓVIL RESPONSIVO Y ELEGANTE */
+.phone-container {
+    width: 100%;
+    max-width: 412px;
+    height: 850px;
+    background-color: #FFFFFF;
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    position: relative;
+    border: 8px solid #000000;
+}
+
+/* VISTAS PANTALLA */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* VISTAS CENTRADAS TOTALMENTE EN MEDIO */
+.screen-centered {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* ENCABEZADO Y LOGO */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    background-color: #FFFFFF;
+    z-index: 10;
+}
+
+.top-bar.sticky-top {
+    position: sticky;
+    top: 0;
+    border-bottom: 2px solid #E2E2E2;
+}
+
+.app-logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-fallback {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-weight: 800;
+    color: #447F9E;
+    font-size: 22px;
+}
+
+/* BOTÓN FLECHA CIRCULAR GRANDE */
+.btn-circle-back {
+    background-color: #447F9E;
+    color: #FFFFFF;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.btn-circle-back.large-circle {
+    width: 52px;
+    height: 52px;
+}
+
+.arrow-svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* CONTENIDO GENERAL */
+.content-body {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #447F9E;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #2D4C5E;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+/* BUSCADOR PRINCIPAL */
+.search-input-box {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.search-input-box input {
+    width: 100%;
+    border: 2px solid #447F9E;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 18px;
+    color: #1A3644;
+    outline: none;
+    text-align: center;
+    font-weight: 600;
+    background-color: #F8FAFC;
+}
+
+/* BUSCADOR CON ÍCONO SVG DE LUPA Y MAYOR TAMAÑO */
+.search-input-active {
+    display: flex;
+    align-items: center;
+    border: 2px solid #447F9E;
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin-bottom: 22px;
+    background-color: #FFFFFF;
+    width: 100%;
+}
+
+.search-input-active input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    color: #447F9E;
+    font-weight: 600;
+}
+
+.search-svg-icon {
+    width: 24px;
+    height: 24px;
+    color: #447F9E;
+    margin-left: 8px;
+}
+
+/* BOTONES */
+.btn-primary {
+    background-color: #447F9E;
+    color: white;
+    border: none;
+    padding: 14px 38px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 8px rgba(68, 127, 158, 0.2);
+}
+
+.btn-top {
+    background-color: #447F9E;
+    margin: 30px 0 10px 0;
+    align-self: flex-end;
+}
+
+/* CARPETA SEPARADA Y MEJORADA */
+.alphabet-section {
+    width: 100%;
+    text-align: left;
+    margin-top: 15px; /* Separación adicional */
+}
+
+.section-question {
+    font-weight: 800;
+    color: #447F9E;
+    font-size: 20px;
+}
+
+.section-sub {
+    font-size: 16px;
+    color: #2D4C5E;
+    margin-bottom: 18px; /* Separación del texto a la carpeta */
+}
+
+.folder-card {
+    background-color: #447F9E;
+    border-radius: 14px 14px 0 0;
+    padding: 26px;
+    position: relative;
+    cursor: pointer;
+}
+
+.folder-tab {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    width: 90px;
+    height: 14px;
+    background-color: #447F9E;
+    border-radius: 6px 6px 0 0;
+}
+
+.folder-body {
+    display: flex;
+    justify-content: center;
+}
+
+/* TEXTO 'VER LISTA' DEL MISMO COLOR AZUL DE LA CARPETA */
+.btn-secondary {
+    background-color: #E2E2E2;
+    color: #447F9E; /* Color de la carpeta */
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+/* TECLADO CON LETRAS SEPARADAS Y MÁS ESPACIO */
+.keyboard-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px; /* Separación incrementada */
+    margin-bottom: 28px;
+    width: 100%;
+}
+
+.key-btn {
+    background-color: #FFFFFF;
+    border: 2px solid #447F9E;
+    border-radius: 8px;
+    padding: 10px 0;
+    font-size: 17px;
+    font-weight: bold;
+    color: #447F9E;
+    cursor: pointer;
+}
+
+.key-btn:hover {
+    background-color: #447F9E;
+    color: #FFFFFF;
+}
+
+/* LISTA DE MEDICAMENTOS Y SELECCIÓN EN MORADO */
+.letter-header {
+    font-size: 22px;
+    font-weight: bold;
+    color: #447F9E;
+    text-align: center;
+    border-bottom: 2px solid #447F9E;
+    padding-bottom: 4px;
+    margin: 14px 0 10px 0;
+}
+
+.drug-item {
+    width: 100%;
+    text-align: left;
+    background-color: #FFFFFF;
+    border: 2px solid #447F9E; /* Color Azul de la página */
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #447F9E;
+    font-weight: 700;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.drug-item:hover, .drug-item.selected {
+    border-color: #723ae4;
+    color: #723ae4; /* Cambia a Morado al seleccionar */
+    background-color: #f7f3ff;
+}
+
+/* PANTALLA CENTRADA NO ENCONTRADO Y BUSCANDO */
+.not-found-content, .loading-content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.not-found-text {
+    font-size: 20px;
+    color: #447F9E;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 28px;
+}
+
+.loading-title {
+    font-size: 32px;
+    color: #447F9E;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.loading-sub {
+    font-size: 18px;
+    color: #58A79E;
+    max-width: 280px;
+    font-weight: 600;
+}
+
+/* SPINNER VERDE/AZUL */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #E2E2E2;
+    border-top: 5px solid #447F9E;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* PANTALLA DETALLE Y TOP PRECIOS VOLVIENDO AL ESTILO ORIGINAL */
+.detail-body {
+    align-items: flex-start;
+    text-align: left;
+    padding-bottom: 40px;
+}
+
+.detail-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #447F9E;
+    margin-bottom: 12px;
+}
+
+.section-heading {
+    font-size: 20px;
+    font-weight: 800;
+    color: #447F9E;
+    margin-bottom: 8px;
+}
+
+.detail-text {
+    font-size: 18px;
+    color: #1A3644;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.purple-highlight {
+    color: #723ae4;
+    font-weight: bold;
+}
+
+.med-card-frame {
+    width: 100%;
+    background-color: #58A79E;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.med-box-mock {
+    background-color: #FFFFFF;
+    width: 90%;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.med-brand-name {
+    font-weight: 800;
+    font-size: 18px;
+    color: #000000;
+}
+
+.med-bio-tag {
+    font-size: 12px;
+    color: #d97706;
+    font-weight: bold;
+    border: 1px solid #f59e0b;
+    border-radius: 12px;
+    padding: 2px 8px;
+}
+
+.tab-indicator-bar {
+    width: 100%;
+    background-color: #447F9E;
+    height: 16px;
+    border-radius: 8px;
+    margin: 16px 0 24px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-fill {
+    width: 35%;
+    height: 100%;
+    background-color: #58A79E;
+    margin-left: 20%;
+    border-radius: 8px;
+}
+
+.section-title-center {
+    font-size: 22px;
+    font-weight: 800;
+    color: #447F9E;
+    width: 100%;
+    text-align: center;
+    margin: 16px 0 12px 0;
+}
+
+.custom-bullet-list {
+    padding-left: 22px;
+    font-size: 18px;
+    color: #1A3644;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.custom-bullet-list li {
+    margin-bottom: 8px;
+}
+
+.purple-warning {
+    font-size: 18px;
+    font-weight: 800;
+    color: #723ae4;
+    text-align: center;
+    width: 100%;
+    margin: 14px 0;
+}
+
+/* CAJA DE ADVERTENCIA Y TRIÁNGULO */
+.red-alert-box {
+    background-color: #FF4D4D;
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.alert-triangle {
+    font-size: 32px;
+}
+
+.alert-text {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/* TOP PRECIOS SEGÚN MARCA */
+.price-disclaimer {
+    font-size: 15px;
+    color: #626DA1;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+}
+
+.price-disclaimer-sub {
+    font-size: 13px;
+    color: #447F9E;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.price-table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.price-row {
+    background-color: #80ebd0; /* Estilo de verde original que te gustaba */
+    color: #1a4d46;
+    padding: 14px 18px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+/* BOTONES INFERIORES DE REGRESAR */
+.action-footer-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-footer {
+    background-color: #447F9E;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+}
