@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaSana - Prototipo Interactivo</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <!-- Marco interactivo de teléfono móvil -->
+    <main class="phone-container">
+        
+        <!-- PANTALLA 1: INICIO Y BÚSQUEDA -->
+        <section id="screen-home" class="screen active" aria-label="Pantalla de inicio">
+            <header class="top-bar">
+                <div class="brand">
+                    <img src="assets/imagen/Logocora-02 2.svg" alt="CaSana" class="app-logo-img" onerror="this.style.display='none'; document.getElementById('alt-logo-home').style.display='flex';">
+                    <div id="alt-logo-home" class="logo-fallback" style="display:none;">
+                        <span class="logo-text">CaSana</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <h1 class="main-title">¿QUÉ HACE ESTE MEDICAMENTO?</h1>
+                <p class="subtitle">Ingresa el medicamento que quieres buscar</p>
+
+                <div class="search-input-box">
+                    <input type="text" id="home-search-input" placeholder="Nombre del medicamento" autocomplete="off" aria-label="Nombre del medicamento">
+                </div>
+
+                <button class="btn-primary" onclick="handleSearchFromInput()">Buscar</button>
+
+                <div class="alphabet-section">
+                    <h2 class="section-question">¿No recuerdas el nombre?</h2>
+                    <p class="section-sub">Busca según orden alfabético.</p>
+
+                    <div class="folder-card" onclick="goToScreen('screen-keyboard')" role="button" tabindex="0">
+                        <div class="folder-tab"></div>
+                        <div class="folder-body">
+                            <span class="btn-secondary">Ver lista</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 2: LISTA ALFABÉTICA Y TECLADO -->
+        <section id="screen-keyboard" class="screen scrollable" aria-label="Búsqueda por orden alfabético">
+            <header class="top-bar sticky-top">
+                <div class="brand">
+                    <img src="assets/imagen/Logocora-02 2.png" alt="CaSana" class="app-logo-img" onerror="this.style.display='none'; document.getElementById('alt-logo-kb').style.display='flex';">
+                    <div id="alt-logo-kb" class="logo-fallback" style="display:none;">
+                        <span class="logo-text">CaSana</span>
+                    </div>
+                </div>
+                <button class="btn-circle-back" onclick="goToScreen('screen-home')" aria-label="Volver atrás">
+                    <svg class="arrow-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,11H7.83l5.59-5.59L12,4,4,12l8,8,1.41-1.41L7.83,13H20V11Z"/></svg>
+                </button>
+            </header>
+
+            <div class="content-body keyboard-body">
+                <p class="instruction-text">Busca por el nombre del medicamento que quieres encontrar</p>
+
+                <!-- Buscador estilizado con ícono SVG de Lupa -->
+                <div class="search-input-active">
+                    <input type="text" id="list-search-input" placeholder="Ingresar nombre" onkeyup="filterAlphabetList()" aria-label="Ingresar nombre">
+                    <svg class="search-svg-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+
+                <h2 class="section-question">¿No recuerdas el nombre?</h2>
+                <p class="section-sub">Busca según orden alfabético:</p>
+
+                <!-- Matriz Teclado A-Z Espaciado -->
+                <nav class="keyboard-grid" aria-label="Teclado alfabético">
+                    <button class="key-btn" onclick="scrollToLetter('A')">A</button>
+                    <button class="key-btn" onclick="scrollToLetter('B')">B</button>
+                    <button class="key-btn" onclick="scrollToLetter('C')">C</button>
+                    <button class="key-btn" onclick="scrollToLetter('D')">D</button>
+                    <button class="key-btn" onclick="scrollToLetter('E')">E</button>
+                    <button class="key-btn" onclick="scrollToLetter('F')">F</button>
+                    <button class="key-btn" onclick="scrollToLetter('G')">G</button>
+                    <button class="key-btn" onclick="scrollToLetter('H')">H</button>
+                    <button class="key-btn" onclick="scrollToLetter('I')">I</button>
+                    <button class="key-btn" onclick="scrollToLetter('J')">J</button>
+                    <button class="key-btn" onclick="scrollToLetter('K')">K</button>
+                    <button class="key-btn" onclick="scrollToLetter('L')">L</button>
+                    <button class="key-btn" onclick="scrollToLetter('M')">M</button>
+                    <button class="key-btn" onclick="scrollToLetter('N')">N</button>
+                    <button class="key-btn" onclick="scrollToLetter('Ñ')">Ñ</button>
+                    <button class="key-btn" onclick="scrollToLetter('O')">O</button>
+                    <button class="key-btn" onclick="scrollToLetter('P')">P</button>
+                    <button class="key-btn" onclick="scrollToLetter('Q')">Q</button>
+                    <button class="key-btn" onclick="scrollToLetter('R')">R</button>
+                    <button class="key-btn" onclick="scrollToLetter('S')">S</button>
+                    <button class="key-btn" onclick="scrollToLetter('T')">T</button>
+                    <button class="key-btn" onclick="scrollToLetter('U')">U</button>
+                    <button class="key-btn" onclick="scrollToLetter('V')">V</button>
+                    <button class="key-btn" onclick="scrollToLetter('W')">W</button>
+                    <button class="key-btn" onclick="scrollToLetter('X')">X</button>
+                    <button class="key-btn" onclick="scrollToLetter('Y')">Y</button>
+                    <button class="key-btn" onclick="scrollToLetter('Z')">Z</button>
+                </nav>
+
+                <!-- Lista de Medicamentos -->
+                <div class="alphabet-list-container" id="alphabet-list">
+                    <div class="letter-group" id="group-A">
+                        <div class="letter-header">A</div>
+                        <button class="drug-item" onclick="openMedDetail(this, 'notfound')">Amlodipino</button>
+                        <button class="drug-item" onclick="openMedDetail(this, 'notfound')">Alprazolam</button>
+                        <button class="drug-item" onclick="openMedDetail(this, 'notfound')">Acetaminofén</button>
+                    </div>
+
+                    <div class="letter-group" id="group-F">
+                        <div class="letter-header">F</div>
+                        <button class="drug-item" onclick="openMedDetail(this, 'furosemida')">Furosemida</button>
+                        <button class="drug-item" onclick="openMedDetail(this, 'notfound')">Fluoxetina</button>
+                    </div>
+
+                    <div class="letter-group" id="group-H">
+                        <div class="letter-header">H</div>
+                        <button class="drug-item" onclick="openMedDetail(this, 'hidroclorotiazida')">Hidroclorotiazida</button>
+                    </div>
+
+                    <div class="letter-group" id="group-I">
+                        <div class="letter-header">I</div>
+                        <button class="drug-item" onclick="openMedDetail(this, 'ibuprofeno')">Ibuprofeno</button>
+                    </div>
+                </div>
+
+                <button class="btn-primary btn-top" onclick="scrollTopView('screen-keyboard')">Volver arriba</button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 3: BUSCANDO... (CENTRADO) -->
+        <section id="screen-loading" class="screen screen-centered loading-screen">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <h2 class="loading-title">Buscando...</h2>
+                <p class="loading-sub">Estamos buscando todo lo relacionado a tu medicamento</p>
+            </div>
+        </section>
+
+        <!-- PANTALLA 4: NO ENCONTRADO (CENTRADO) -->
+        <section id="screen-not-found" class="screen screen-centered">
+            <div class="not-found-content">
+                <p class="not-found-text">No se ha encontrado información sobre el medicamento que esta buscando.</p>
+                <button class="btn-primary" onclick="goToScreen('screen-home')">Volver al inicio</button>
+                <br>
+                <button class="btn-circle-back large-circle" onclick="goToScreen('screen-home')" aria-label="Volver al inicio">
+                    <svg class="arrow-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,11H7.83l5.59-5.59L12,4,4,12l8,8,1.41-1.41L7.83,13H20V11Z"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- PANTALLA 5: DETALLE MEDICAMENTO - IBUPROFENO -->
+        <section id="screen-ibuprofeno" class="screen scrollable">
+            <header class="top-bar">
+                <div class="brand">
+                    <img src="assets/imagen/Logocora-02 2.png" alt="CaSana" class="app-logo-img">
+                </div>
+                <button class="btn-circle-back" onclick="goToScreen('screen-keyboard')" aria-label="Volver atrás">
+                    <svg class="arrow-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,11H7.83l5.59-5.59L12,4,4,12l8,8,1.41-1.41L7.83,13H20V11Z"/></svg>
+                </button>
+            </header>
+
+            <div class="content-body detail-body">
+                <h1 class="detail-title">IBUPROFENO</h1>
+                <h2 class="section-heading">¿QUE HACE?</h2>
+                <p class="detail-text">
+                    El ibuprofeno se utiliza para aliviar molestias como el dolor, la sensibilidad, la inflamación y la rigidez que provocan enfermedades como la <strong class="purple-highlight">osteoartritis</strong> y la <strong class="purple-highlight">artritis reumatoide</strong>.
+                </p>
+
+                <div class="med-card-frame">
+                    <div class="med-box-mock">
+                        <span class="med-brand-name">Ibuprofeno 200 mg</span>
+                        <span class="med-bio-tag">B Bioequivalente</span>
+                    </div>
+                </div>
+
+                <div class="tab-indicator-bar">
+                    <div class="tab-fill"></div>
+                </div>
+
+                <h3 class="section-title-center">Indicaciones</h3>
+                <ul class="custom-bullet-list">
+                    <li>3 o 4 raciones máximo por día (bajo receta).</li>
+                    <li>Medicamento via oral.</li>
+                    <li>No consumir si se es alérgico a: hidroclorotiazida, a las sulfamidas o la penicilina</li>
+                </ul>
+
+                <p class="purple-warning">[Consulte a su médico a la hora del consumo]</p>
+
+                <h3 class="section-title-center">Efectos secundarios</h3>
+                <ul class="custom-bullet-list">
+                    <li>Estreñimiento</li>
+                    <li>Gases o distensión abdominal,</li>
+                    <li>Mareos</li>
+                    <li>Nerviosismo</li>
+                    <li>Zumbido en los oídos</li>
+                </ul>
+
+                <div class="red-alert-box">
+                    <span class="alert-triangle">⚠️</span>
+                    <p class="alert-text">En caso de sentir uno de estos síntomas debé ir a médico.</p>
+                </div>
+
+                <ul class="custom-bullet-list">
+                    <li>Aumento de peso sin explicación</li>
+                    <li>Falta de aliento o dificultad para respirar</li>
+                    <li>Inflamación de las abdomen, pies, tobillos o pantorrillas</li>
+                    <li>Diarrea</li>
+                    <li>Fiebre, erupción, ampollas o descamación de la piel</li>
+                    <li>Picazón / Urticaria</li>
+                    <li>Dificultad para respirar o tragar</li>
+                    <li>Cansancio excesivo</li>
+                </ul>
+
+                <div class="tab-indicator-bar">
+                    <div class="tab-fill"></div>
+                </div>
+
+                <h3 class="section-title-center">Top precios según marca</h3>
+                <p class="price-disclaimer">Tomando como referentes los empaques de 200mg.</p>
+                <p class="price-disclaimer-sub">Lista de los diferentes precios que pueden llegar a tener estas marcas de medicamentos y varian dependiendo en que tienda adquiera este producto.</p>
+
+                <div class="price-table">
+                    <div class="price-row"><span>Ascend</span><span>$920 - 1.990</span></div>
+                    <div class="price-row"><span>Actron</span><span>$2.640 - 3.800</span></div>
+                    <div class="price-row"><span>Opko</span><span>$3.800 - 6.300</span></div>
+                    <div class="price-row"><span>Ibupirac</span><span>$5.103 - 7.190</span></div>
+                </div>
+
+                <div class="action-footer-buttons">
+                    <button class="btn-footer" onclick="goToScreen('screen-keyboard')">&lt; Regresar</button>
+                    <button class="btn-footer" onclick="scrollTopView('screen-ibuprofeno')">Volver arriba</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 6: DETALLE MEDICAMENTO - HIDROCLOROTIAZIDA -->
+        <section id="screen-hidroclorotiazida" class="screen scrollable">
+            <header class="top-bar">
+                <div class="brand">
+                    <img src="assets/imagen/Logocora-02 2.png" alt="CaSana" class="app-logo-img">
+                </div>
+                <button class="btn-circle-back" onclick="goToScreen('screen-keyboard')" aria-label="Volver atrás">
+                    <svg class="arrow-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,11H7.83l5.59-5.59L12,4,4,12l8,8,1.41-1.41L7.83,13H20V11Z"/></svg>
+                </button>
+            </header>
+
+            <div class="content-body detail-body">
+                <h1 class="detail-title">HIDROCLOROTIAZIDA</h1>
+                <h2 class="section-heading">¿QUE HACE?</h2>
+                <p class="detail-text">
+                    La hidroclorotiazida pertenece a una clase de medicamentos llamados <strong class="purple-highlight">diuréticos (píldoras que provocan la eliminación de agua a través de la orina)</strong>. Su acción consiste en hacer que los riñones eliminen el agua y la sal innecesarios del cuerpo a través de la orina.
+                </p>
+
+                <div class="med-card-frame">
+                    <div class="med-box-mock">
+                        <span class="med-brand-name">Volkem® D 160/12,5</span>
+                        <span class="med-bio-tag">B Bioequivalente</span>
+                    </div>
+                </div>
+
+                <div class="tab-indicator-bar">
+                    <div class="tab-fill"></div>
+                </div>
+
+                <h3 class="section-title-center">Indicaciones</h3>
+                <ul class="custom-bullet-list">
+                    <li>2 raciones máximo por día.</li>
+                    <li>Medicamento via oral.</li>
+                    <li>No consumir si se es alérgico a: hidroclorotiazida, a las sulfamidas o la penicilina</li>
+                </ul>
+
+                <p class="purple-warning">[Consulte a su médico a la hora del consumo]</p>
+
+                <h3 class="section-title-center">Efectos secundarios</h3>
+                <ul class="custom-bullet-list">
+                    <li>Micción frecuente</li>
+                    <li>Diarrea</li>
+                    <li>Pérdida de apetito</li>
+                    <li>Dolor de cabeza</li>
+                </ul>
+
+                <div class="red-alert-box">
+                    <span class="alert-triangle">⚠️</span>
+                    <p class="alert-text">En caso de sentir uno de estos síntomas debé ir a médico.</p>
+                </div>
+
+                <ul class="custom-bullet-list">
+                    <li>ampollas o descamación de la piel.</li>
+                    <li>urticaria</li>
+                    <li>sarpullido</li>
+                    <li>dificultad para respirar o tragar</li>
+                </ul>
+
+                <div class="tab-indicator-bar">
+                    <div class="tab-fill"></div>
+                </div>
+
+                <h3 class="section-title-center">Top precios según marca</h3>
+                <p class="price-disclaimer">Tomando como referentes los empaques de 160mg.</p>
+                <div class="price-table">
+                    <div class="price-row"><span>Valaplex</span><span>$13.400 - $16.600</span></div>
+                    <div class="price-row"><span>Valkem</span><span>$14.500 - $18.399</span></div>
+                    <div class="price-row"><span>Valax</span><span>$16.000</span></div>
+                </div>
+
+                <div class="action-footer-buttons">
+                    <button class="btn-footer" onclick="goToScreen('screen-keyboard')">&lt; Regresar</button>
+                    <button class="btn-footer" onclick="scrollTopView('screen-hidroclorotiazida')">Volver arriba</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 7: DETALLE MEDICAMENTO - FUROSEMIDA -->
+        <section id="screen-furosemida" class="screen scrollable">
+            <header class="top-bar">
+                <div class="brand">
+                    <img src="assets/imagen/Logocora-02 2.png" alt="CaSana" class="app-logo-img">
+                </div>
+                <button class="btn-circle-back" onclick="goToScreen('screen-keyboard')" aria-label="Volver atrás">
+                    <svg class="arrow-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,11H7.83l5.59-5.59L12,4,4,12l8,8,1.41-1.41L7.83,13H20V11Z"/></svg>
+                </button>
+            </header>
+
+            <div class="content-body detail-body">
+                <h1 class="detail-title">FUROSEMIDA</h1>
+                <h2 class="section-heading">¿QUE HACE?</h2>
+                <p class="detail-text">
+                    Trata la presión arterial alta y <strong class="purple-highlight">el edema (acumulación excesiva de líquido)</strong>.
+                </p>
+
+                <div class="med-card-frame">
+                    <div class="med-box-mock">
+                        <span class="med-brand-name">Furosemida 40 mg</span>
+                        <span class="med-bio-tag">B Bioequivalente</span>
+                    </div>
+                </div>
+
+                <div class="tab-indicator-bar">
+                    <div class="tab-fill"></div>
+                </div>
+
+                <h3 class="section-title-center">Indicaciones</h3>
+                <ul class="custom-bullet-list">
+                    <li>2 raciones máximo por día.</li>
+                    <li>Medicamento via oral.</li>
+                </ul>
+
+                <div class="price-table">
+                    <div class="price-row"><span>Lab. Chile</span><span>$520 - $1.299</span></div>
+                    <div class="price-row"><span>Adromaco</span><span>$1.090</span></div>
+                </div>
+
+                <div class="action-footer-buttons">
+                    <button class="btn-footer" onclick="goToScreen('screen-keyboard')">&lt; Regresar</button>
+                    <button class="btn-footer" onclick="scrollTopView('screen-furosemida')">Volver arriba</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JS de control -->
+    <script>
+        function goToScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(screenId);
+            if (target) {
+                target.classList.add('active');
+                target.scrollTop = 0;
+            }
+        }
+
+        function triggerSearchProcess(targetScreenId) {
+            goToScreen('screen-loading');
+            setTimeout(() => {
+                goToScreen(targetScreenId);
+            }, 1000);
+        }
+
+        function handleSearchFromInput() {
+            const inputVal = document.getElementById('home-search-input').value.trim().toLowerCase();
+            if (!inputVal) {
+                goToScreen('screen-keyboard');
+                return;
+            }
+
+            if (inputVal.includes('ibu')) {
+                triggerSearchProcess('screen-ibuprofeno');
+            } else if (inputVal.includes('hidro')) {
+                triggerSearchProcess('screen-hidroclorotiazida');
+            } else if (inputVal.includes('furo')) {
+                triggerSearchProcess('screen-furosemida');
+            } else {
+                triggerSearchProcess('screen-not-found');
+            }
+        }
+
+        function openMedDetail(element, medKey) {
+            if (element) {
+                element.classList.add('selected');
+            }
+            if (medKey === 'ibuprofeno') {
+                triggerSearchProcess('screen-ibuprofeno');
+            } else if (medKey === 'hidroclorotiazida') {
+                triggerSearchProcess('screen-hidroclorotiazida');
+            } else if (medKey === 'furosemida') {
+                triggerSearchProcess('screen-furosemida');
+            } else {
+                triggerSearchProcess('screen-not-found');
+            }
+        }
+
+        function scrollToLetter(letter) {
+            const el = document.getElementById('group-' + letter);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function scrollTopView(screenId) {
+            const el = document.getElementById(screenId);
+            if (el) {
+                el.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function filterAlphabetList() {
+            const filter = document.getElementById('list-search-input').value.toLowerCase();
+            const items = document.querySelectorAll('.drug-item');
+            
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(filter) ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
